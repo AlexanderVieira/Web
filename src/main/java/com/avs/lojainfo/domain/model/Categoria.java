@@ -2,24 +2,42 @@ package com.avs.lojainfo.domain.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
- * Autor: Alexander Silva
- * Classe que representa entidade Categoria.
+ * @author Alexander Silva
+ * {@summary Classe que representa entidade Categoria}
  */
+
 public class Categoria implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String nome;
 	
+	@Column(name = "NOME", nullable = false, length = 255)
+	private String nome;
+
 	public Categoria() {
-		
+
 	}
 
 	public Categoria(Integer id, String nome) {
 		super();
-		this.id = id;
+		this.setId(id);
+		this.setNome(nome);
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
@@ -31,19 +49,12 @@ public class Categoria implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 
@@ -61,6 +72,11 @@ public class Categoria implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
 		return true;
 	}
 
@@ -68,6 +84,5 @@ public class Categoria implements Serializable {
 	public String toString() {
 		return "Categoria [id=" + id + ", nome=" + nome + "]";
 	}
-	
 
 }
