@@ -30,12 +30,11 @@ public class BaseService<T, ID extends Serializable> implements IBaseService<T, 
 		return collections;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Optional<T> findById(ID id) {
 		
 		Optional<T> obj = baseRepository.findById(id);		
-		return (Optional<T>) obj.orElse(null);
+		return (Optional<T>) obj;
 	}
 
 	@Override
