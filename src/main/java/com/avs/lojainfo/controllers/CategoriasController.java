@@ -24,11 +24,11 @@ public class CategoriasController {
 	private IBaseService<Categoria, Integer> baseService;
 
 	@GetMapping(value = "/api/categorias", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Categoria> findAll() {
+	public ResponseEntity<List<Categoria>> findAll() {
 
 		List<Categoria> categorias = new ArrayList<>();
 		categorias = (List<Categoria>) baseService.findAll();
-		return categorias;
+		return new ResponseEntity<>(categorias, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/api/categoria/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -57,6 +57,6 @@ public class CategoriasController {
 	public ResponseEntity<Categoria> save(@RequestBody  Categoria categoria){
 		
 		Categoria categoriaPersistida = baseService.save(categoria);
-		return new ResponseEntity<>(categoriaPersistida, HttpStatus.OK);
+		return new ResponseEntity<>(categoriaPersistida, HttpStatus.CREATED);
 	}
 }
