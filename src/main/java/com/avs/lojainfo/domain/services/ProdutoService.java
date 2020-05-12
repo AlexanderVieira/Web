@@ -1,32 +1,36 @@
 package com.avs.lojainfo.domain.services;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import com.avs.lojainfo.data.interfaces.repositories.IBaseRepository;
-import com.avs.lojainfo.domain.interfaces.services.IBaseService;
+import com.avs.lojainfo.data.interfaces.repositories.IProdutoRepository;
+import com.avs.lojainfo.domain.interfaces.services.IProdutoService;
+import com.avs.lojainfo.domain.model.Produto;
 import com.avs.lojainfo.domain.services.applicationexception.DataIntegrityException;
 import com.avs.lojainfo.domain.services.applicationexception.ObjectNotFoundException;
 
 @Service
-public class BaseService<T, ID extends Serializable> implements IBaseService<T, ID> {
+public class ProdutoService implements IProdutoService {
 
-	@Autowired	
-	//@Qualifier("baseRepository")
-	private IBaseRepository<T, ID> baseRepository;
+	private IProdutoRepository _produtoRepository;
+
+	@Autowired
+	public ProdutoService(IProdutoRepository produtoRepository) {
+		super();
+		_produtoRepository = produtoRepository;
+	}
 
 	@Override
-	public void deleteById(ID id) {
-		
+	public void deleteById(Integer id) {
+
 		try {
-			
+
 			if (existsById(id)) {
-				
-				baseRepository.deleteById(id);
-			}			
+
+				_produtoRepository.deleteById(id);
+			}
 
 		} catch (DataIntegrityViolationException e) {
 
@@ -36,45 +40,29 @@ public class BaseService<T, ID extends Serializable> implements IBaseService<T, 
 	}
 
 	@Override
-	public List<T> findAll() {
+	public List<Produto> findAll() {
 
-		List<T> collections = baseRepository.findAll();
+		List<Produto> collections = _produtoRepository.findAll();
 		if (collections == null || collections.isEmpty()) {
 
 			throw new ObjectNotFoundException("Nenhum dado encontrado para exibição.");
 		}
 		return collections;
-
 	}
 
 	@Override
-	public Optional<T> findById(ID id) {
+	public Optional<Produto> findById(Integer id) {
 
-		Optional<T> obj = baseRepository.findById(id);
-		return (Optional<T>) obj;
+		Optional<Produto> obj = _produtoRepository.findById(id);
+		return obj;
 	}
 
 	@Override
-	public <S extends T> S save(S entity) {
+	public <S extends Produto> S save(S entity) {
 
 		try {
 
-			S persisted = baseRepository.save(entity);
-			return persisted;
-
-		} catch (DataIntegrityViolationException e) {
-
-			throw new DataIntegrityException("Erro interno do servidor. Tente mais tarde.");
-		}
-
-	}
-
-	@Override
-	public <S extends T> S saveAndFlush(S entity) {
-
-		try {
-
-			S persisted = baseRepository.saveAndFlush(entity);
+			S persisted = _produtoRepository.save(entity);
 			return persisted;
 
 		} catch (DataIntegrityViolationException e) {
@@ -84,11 +72,25 @@ public class BaseService<T, ID extends Serializable> implements IBaseService<T, 
 	}
 
 	@Override
-	public <S extends T> List<S> saveAll(Iterable<S> entities) {
+	public <S extends Produto> S saveAndFlush(S entity) {
 
 		try {
 
-			List<S> entidadesPersistidas = baseRepository.saveAll(entities);
+			S persisted = _produtoRepository.saveAndFlush(entity);
+			return persisted;
+
+		} catch (DataIntegrityViolationException e) {
+
+			throw new DataIntegrityException("Erro interno do servidor. Tente mais tarde.");
+		}
+	}
+
+	@Override
+	public <S extends Produto> List<S> saveAll(Iterable<S> entities) {
+
+		try {
+
+			List<S> entidadesPersistidas = _produtoRepository.saveAll(entities);
 			return entidadesPersistidas;
 
 		} catch (DataIntegrityViolationException e) {
@@ -99,9 +101,9 @@ public class BaseService<T, ID extends Serializable> implements IBaseService<T, 
 	}
 
 	@Override
-	public boolean existsById(ID id) {
-		
-		boolean objExists = baseRepository.existsById(id);
+	public boolean existsById(Integer id) {
+
+		boolean objExists = _produtoRepository.existsById(id);
 		return objExists;
 	}
 
