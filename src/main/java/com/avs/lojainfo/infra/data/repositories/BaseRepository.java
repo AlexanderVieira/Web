@@ -1,4 +1,4 @@
-package com.avs.lojainfo.data.repositories;
+package com.avs.lojainfo.infra.data.repositories;
 
 /*
  * @Repository public class BaseRepository<T, ID extends Serializable> extends

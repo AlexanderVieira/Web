@@ -1,4 +1,4 @@
-package com.avs.lojainfo.data.interfaces.repositories;
+package com.avs.lojainfo.infra.data.interfaces.repositories;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;

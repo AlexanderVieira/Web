@@ -5,11 +5,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import com.avs.lojainfo.data.interfaces.repositories.ICategoriaRepository;
+
+import com.avs.lojainfo.application.exception.DataIntegrityException;
+import com.avs.lojainfo.application.exception.ObjectNotFoundException;
 import com.avs.lojainfo.domain.interfaces.services.ICategoriaService;
 import com.avs.lojainfo.domain.model.Categoria;
-import com.avs.lojainfo.domain.services.applicationexception.DataIntegrityException;
-import com.avs.lojainfo.domain.services.applicationexception.ObjectNotFoundException;
+import com.avs.lojainfo.infra.data.interfaces.repositories.ICategoriaRepository;
 
 @Service
 public class CategoriaService implements ICategoriaService {
@@ -30,6 +31,9 @@ public class CategoriaService implements ICategoriaService {
 			if (existsById(id)) {
 
 				_categoriaRepository.deleteById(id);
+			}else {
+				
+				throw new ObjectNotFoundException("Categoria removida ou não existe.");
 			}
 
 		} catch (DataIntegrityViolationException e) {
@@ -53,7 +57,7 @@ public class CategoriaService implements ICategoriaService {
 	@Override
 	public Optional<Categoria> findById(Integer id) {
 		
-		Optional<Categoria> obj = _categoriaRepository.findById(id);
+		Optional<Categoria> obj = _categoriaRepository.findById(id);		
 		return obj;
 	}
 

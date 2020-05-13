@@ -1,4 +1,4 @@
-package com.avs.lojainfo.data.interfaces.repositories;
+package com.avs.lojainfo.infra.data.interfaces.repositories;
 
 import java.io.Serializable;
 import java.util.List;

@@ -6,10 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import com.avs.lojainfo.data.interfaces.repositories.IBaseRepository;
+
+import com.avs.lojainfo.application.exception.DataIntegrityException;
+import com.avs.lojainfo.application.exception.ObjectNotFoundException;
 import com.avs.lojainfo.domain.interfaces.services.IBaseService;
-import com.avs.lojainfo.domain.services.applicationexception.DataIntegrityException;
-import com.avs.lojainfo.domain.services.applicationexception.ObjectNotFoundException;
+import com.avs.lojainfo.infra.data.interfaces.repositories.IBaseRepository;
 
 @Service
 public class BaseService<T, ID extends Serializable> implements IBaseService<T, ID> {

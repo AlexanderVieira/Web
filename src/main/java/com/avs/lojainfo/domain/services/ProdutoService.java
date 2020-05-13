@@ -5,11 +5,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import com.avs.lojainfo.data.interfaces.repositories.IProdutoRepository;
+
+import com.avs.lojainfo.application.exception.DataIntegrityException;
+import com.avs.lojainfo.application.exception.ObjectNotFoundException;
 import com.avs.lojainfo.domain.interfaces.services.IProdutoService;
 import com.avs.lojainfo.domain.model.Produto;
-import com.avs.lojainfo.domain.services.applicationexception.DataIntegrityException;
-import com.avs.lojainfo.domain.services.applicationexception.ObjectNotFoundException;
+import com.avs.lojainfo.infra.data.interfaces.repositories.IProdutoRepository;
 
 @Service
 public class ProdutoService implements IProdutoService {

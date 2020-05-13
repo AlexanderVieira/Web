@@ -1,4 +1,4 @@
-package com.avs.lojainfo.controllers;
+package com.avs.lojainfo.application.controllers;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.avs.lojainfo.application.exception.ObjectNotFoundException;
 import com.avs.lojainfo.domain.interfaces.services.ICategoriaService;
 import com.avs.lojainfo.domain.model.Categoria;
-import com.avs.lojainfo.domain.services.applicationexception.ObjectNotFoundException;
 
 @RestController
 public class CategoriasController {

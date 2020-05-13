@@ -1,4 +1,4 @@
-package com.avs.lojainfo.configuration;
+package com.avs.lojainfo.infra.configuration;
 
 /*@Configuration
 @EnableJpaAuditing(dateTimeProviderRef = "dateTimeProvider")

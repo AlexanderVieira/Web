@@ -1,4 +1,4 @@
-package com.avs.lojainfo.domain.services.applicationexception;
+package com.avs.lojainfo.application.exception;
 
 /**
  * @author Alexander
