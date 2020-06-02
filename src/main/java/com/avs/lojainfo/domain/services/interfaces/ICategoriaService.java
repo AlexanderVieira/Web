@@ -1,4 +1,4 @@
-package com.avs.lojainfo.domain.interfaces.services;
+package com.avs.lojainfo.domain.services.interfaces;
 
 import org.springframework.stereotype.Service;
 import com.avs.lojainfo.domain.model.Categoria;

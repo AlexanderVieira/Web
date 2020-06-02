@@ -5,10 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import com.avs.lojainfo.domain.interfaces.services.ICategoriaService;
-import com.avs.lojainfo.domain.interfaces.services.IProdutoService;
+
 import com.avs.lojainfo.domain.model.Categoria;
+import com.avs.lojainfo.domain.model.Cidade;
+import com.avs.lojainfo.domain.model.Estado;
 import com.avs.lojainfo.domain.model.Produto;
+import com.avs.lojainfo.domain.services.interfaces.ICategoriaService;
+import com.avs.lojainfo.domain.services.interfaces.ICidadeService;
+import com.avs.lojainfo.domain.services.interfaces.IEstadoService;
+import com.avs.lojainfo.domain.services.interfaces.IProdutoService;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -20,6 +25,12 @@ public class Application implements CommandLineRunner {
 	@Autowired
 	//private IBaseService<Produto, Integer> produtoService;
 	private IProdutoService _produtoService;
+	
+	@Autowired
+	private IEstadoService _estadoService;
+	
+	@Autowired
+	private ICidadeService _cidadeService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -49,6 +60,19 @@ public class Application implements CommandLineRunner {
 
 		_categoriaService.saveAll(Arrays.asList(catInformatica, catEscritorio));
 		_produtoService.saveAll(Arrays.asList(prodNotebook, prodDesktop, prodTeclado, prodMouse, prodImpressora));
+		
+		Estado minasGerais = new Estado(null, "Minas Gerais");
+		Estado saoPaulo = new Estado(null, "São Paulo");
+		
+		Cidade cidUberlandia = new Cidade(null, "Uberlândia", minasGerais);
+		Cidade cidSaoPaulo = new Cidade(null, "São Paulo", saoPaulo);
+		Cidade cidCampinas = new Cidade(null, "Campinas", saoPaulo);
+		
+		minasGerais.getCidades().addAll(Arrays.asList(cidUberlandia));
+		saoPaulo.getCidades().addAll(Arrays.asList(cidSaoPaulo, cidCampinas));
+
+		_estadoService.saveAll(Arrays.asList(minasGerais, saoPaulo));
+		_cidadeService.saveAll(Arrays.asList(cidUberlandia, cidSaoPaulo, cidCampinas));
 
 	}
 

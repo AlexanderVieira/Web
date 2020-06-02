@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.avs.lojainfo.application.exception.ObjectNotFoundException;
-import com.avs.lojainfo.domain.interfaces.services.ICategoriaService;
 import com.avs.lojainfo.domain.model.Categoria;
+import com.avs.lojainfo.domain.services.interfaces.ICategoriaService;
 
 @RestController
 public class CategoriasController {

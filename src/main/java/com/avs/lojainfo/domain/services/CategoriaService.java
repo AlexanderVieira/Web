@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.avs.lojainfo.application.exception.DataIntegrityException;
 import com.avs.lojainfo.application.exception.ObjectNotFoundException;
-import com.avs.lojainfo.domain.interfaces.services.ICategoriaService;
 import com.avs.lojainfo.domain.model.Categoria;
-import com.avs.lojainfo.infra.data.interfaces.repositories.ICategoriaRepository;
+import com.avs.lojainfo.domain.services.interfaces.ICategoriaService;
+import com.avs.lojainfo.infra.data.repositories.interfaces.ICategoriaRepository;
 
 @Service
 public class CategoriaService implements ICategoriaService {

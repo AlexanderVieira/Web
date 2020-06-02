@@ -1,4 +1,4 @@
-package com.avs.lojainfo.domain.interfaces.services;
+package com.avs.lojainfo.domain.services.interfaces;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +18,6 @@ public interface IBaseService<T, ID> {
 
 	<S extends T> List<S> saveAll(Iterable<S> entities);
 
-	boolean existsById(ID id);
+	boolean existsById(ID id);	
 
 }

@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.avs.lojainfo.application.exception.DataIntegrityException;
 import com.avs.lojainfo.application.exception.ObjectNotFoundException;
-import com.avs.lojainfo.domain.interfaces.services.IBaseService;
-import com.avs.lojainfo.infra.data.interfaces.repositories.IBaseRepository;
+import com.avs.lojainfo.domain.services.interfaces.IBaseService;
+import com.avs.lojainfo.infra.data.repositories.interfaces.IBaseRepository;
 
 @Service
 public class BaseService<T, ID extends Serializable> implements IBaseService<T, ID> {
